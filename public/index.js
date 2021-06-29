@@ -2,6 +2,8 @@ const socket = io('/');
 const peer = new Peer();
 const videoDiv = document.getElementById('videoDiv');
 const myVideo = document.getElementById('myVideo');
+const nameContainer = document.getElementById('names');
+let guserName;
 
 let otherUsers = {}, otherVid = {};
 
@@ -23,6 +25,7 @@ navigator.mediaDevices.getUserMedia({
     myVideo.append(myVid);
 
     peer.on('call', callObj => {
+        nameContainer.innerText = guserName;
         callObj.answer(stream);
         otherUsers[callObj.peer] = callObj;
         const newUserVid = document.createElement('video');
@@ -34,7 +37,9 @@ navigator.mediaDevices.getUserMedia({
         })
     })
     
-    socket.on('userJoined', (userid) =>{
+    socket.on('userJoined', (userid, userName) =>{
+        nameContainer.innerText = userName;
+        guserName = userName;
         const call = peer.call(userid, stream);
         otherUsers[userid] = call;
         const newUserVid = document.createElement('video');
