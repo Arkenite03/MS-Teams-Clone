@@ -24,6 +24,13 @@
     grid-auto-rows: 300px;
 }
 
+#disconnectCall{
+    position:absolute;
+    bottom:30px;
+    right:25%;
+    left:50%;
+}
+
 #displayName {
     color: blue;
     position: relative;

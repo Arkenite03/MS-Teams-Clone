@@ -74,3 +74,8 @@ navigator.mediaDevices.getUserMedia({
     myName.innerText = name;
     myVideo.append(myName);
   }
+
+  function disconnectCall(){
+    peer.destroy();
+    location.replace("/")
+  }
