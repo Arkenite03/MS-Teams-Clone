@@ -2,6 +2,7 @@ const express = require('express');
 const app = express(); 
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+var PORT = process.env.PORT || 9090;
 
 app.set("view engine", "ejs"); 
   
@@ -25,6 +26,6 @@ io.on('connection' , (socket)=>{
     });
 }); 
   
-server.listen(9090 , ()=>{
+server.listen(PORT , ()=>{
     console.log("Server running on port 9090");
 });
