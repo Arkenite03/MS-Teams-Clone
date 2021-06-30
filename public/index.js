@@ -1,14 +1,11 @@
 const socket = io('/');
 const peer = new Peer();
 const videoDiv = document.getElementById('videoDiv');
-<<<<<<< HEAD
 const myVideo = document.getElementById('myVideo');
-const nameContainer = document.getElementById('names');
-let guserName;
 
 let otherUsers = {}, otherVid = {};
-=======
->>>>>>> parent of ee9c3b3 (Positioned Video Containers and Disconnetion on leaving)
+
+const name = prompt("Enter your name to join");
 
 peer.on('open' , (id)=>{
     socket.emit("newUser" , id);
@@ -19,32 +16,42 @@ navigator.mediaDevices.getUserMedia({
     audio:true
   }).then((stream)=>{
 
-    const myVid = document.createElement('video');
-    myVid.muted = true;
-    addVideo(myVid, stream);
+    addMyVideo(stream);
 
     peer.on('call', callObj => {
-        nameContainer.innerText = guserName;
         callObj.answer(stream);
-        const newUserVid = document.createElement('video');
-        callObj.on('stream', userStream => {
-            addVideo(newUserVid, userStream);
-        })
+        addUserMedia(callObj.peer, callObj);
     })
     
-    socket.on('userJoined', (userid, userName) =>{
-        nameContainer.innerText = userName;
-        guserName = userName;
+    socket.on('userJoined', (userid) =>{
         const call = peer.call(userid, stream);
-        const newUserVid = document.createElement('video');
-        call.on('stream', userStream => {
-            addVideo(newUserVid, userStream);
-        })
+        addUserMedia(userid, call);
     })
 
   }).catch(err=>{
       alert(err.message)
   })
+
+  socket.on('userDisconnected', (userId) => {
+    if(otherUsers[userId]){
+      otherUsers[userId].close();
+      otherVid[userId][0].parentNode.replaceChild(otherVid[userId][1], otherVid[userId][0]);
+      setTimeout(() => {
+        otherVid[userId][1].remove();
+      }, 1500)
+    }
+  });
+
+  function addUserMedia(userId, callObj) {
+    otherUsers[userId] = callObj;
+    const newUserVid = document.createElement('video');
+    const newDisconnect = document.createElement('p');
+    newDisconnect.innerText = "Disconnecting...";
+    otherVid[userId] = [newUserVid, newDisconnect];
+    callObj.on('stream', userStream => {
+        addVideo(newUserVid, userStream);
+    })
+  };
 
   function addVideo(vidElement, stream){
     vidElement.srcObject = stream;
@@ -52,4 +59,18 @@ navigator.mediaDevices.getUserMedia({
       vidElement.play()
     })
     videoDiv.append(vidElement);
+  }
+
+  function addMyVideo(stream){
+    const myVid = document.createElement('video');
+    myVid.muted = true;
+    myVid.srcObject = stream;
+    myVid.addEventListener('loadedmetadata', () => {
+      myVid.play();
+    })
+    myVideo.append(myVid);
+    const myName = document.createElement('div');
+    myName.className = 'myNameCSS';
+    myName.innerText = name;
+    myVideo.append(myName);
   }

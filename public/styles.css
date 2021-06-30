@@ -57,15 +57,14 @@ video {
     height: 30%;
     width: 15%;
     position: fixed;
-    top: 55%;
+    top: 60%;
     left: 1%;
 }
 
-#myName {
+.myNameCSS {
     color: blue;
     position: relative;
-    top: 270px;
-    left: 45%;
+    left: 40%;
 }
 
 #footer {
