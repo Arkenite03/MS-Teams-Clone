@@ -12,13 +12,12 @@ app.get('/' , (req,res)=>{
     res.render('main');
 });
 
-app.get('/home' , (req,res)=>{
+app.get('/room' , (req,res)=>{
     res.render('index');
 });
 
 io.on('connection' , (socket)=>{
     socket.on('newUser' , (id)=>{
-        // socket.join('/home');
         socket.broadcast.emit("userJoined" , id);
         socket.on('disconnect', () => {
             socket.broadcast.emit('userDisconnected', id);
