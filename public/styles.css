@@ -117,6 +117,7 @@ video {
 
 #messageInp{
     width: 80%;
+    min-width: 280px;
     border: 2px solid black;
     border-radius: 6px;
     height: 34px;
@@ -126,6 +127,7 @@ video {
 .btn{
     margin: 0 5px;
     width: 20%;
+    min-width: 80px;
     cursor: pointer;
     border: 2px solid black;
     border-radius: 6px;
