@@ -18,14 +18,22 @@ app.get('/room' , (req,res)=>{
 });
 
 io.on('connection' , (socket)=>{
-    socket.on('newUser' , (id, name) => {
+    socket.on('newUser' , (id, name) => {        
         socket.join('/room');
+
+        // Calling Purpose
         socket.emit('allNames', otherNames);
         otherNames[id] = name;
         socket.broadcast.emit("userJoined" , id, name);
         socket.on('disconnect', () => {
             socket.broadcast.emit('userDisconnected', id);
         }); 
+
+        // Chatting
+        socket.on('send', (message, myId) =>{
+            socket.broadcast.emit('receive', {message: message, name: otherNames[myId]});
+        });
+        
     });
 }); 
   

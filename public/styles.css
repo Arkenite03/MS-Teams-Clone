@@ -65,3 +65,67 @@ video {
     border: 2px solid #4F5D75;
     border-radius: 10px;
 }
+
+
+.container{
+    width: 300px;
+    border: 2px solid black;
+    border-radius: 13px;
+    margin: auto;
+    height: 40vh;
+    padding: 33px;
+    overflow-y: auto;
+    margin-bottom: 23px;
+    position: fixed;
+    left: 70%;
+    top: 250px;
+}
+
+.message{
+    background-color: rgb(211, 204, 204);
+    font-size: 14px;
+    width: 74%;
+    padding: 10px;
+    margin: 17px 12px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.left{
+    float: left;
+    clear:both;
+}
+
+.right{
+    float: right;
+    clear:both;
+}
+
+#send-container{
+    display:block;
+    margin: auto;
+    text-align: center;
+    max-width: 755px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 57%;
+    top: 88%;
+}
+#messageInp{
+    width: 30%;
+    border: 2px solid black;
+    border-radius: 6px;
+    height: 34px;
+    font-size: 14px;
+}
+
+.btn{
+    margin: 0 5px;
+    width: 9%;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 6px;
+    height: 34px;
+}

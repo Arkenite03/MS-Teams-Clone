@@ -2,13 +2,18 @@ const socket = io('/');
 const peer = new Peer();
 const videoDiv = document.getElementById('videoDiv');
 const myVideo = document.getElementById('myVideo');
+const form = document.getElementById('send-container');
+const messageInput = document.getElementById('messageInp')
+const messageContainer = document.querySelector(".container")
 
 let otherUsers = {}, otherVid = {}, otherNames = {};
 let mediaList = {};                 // For handling media recieving twice
 
 const name = prompt("Enter your name to join");
+var myId = 0;
 
 peer.on('open' , (id)=>{
+    myId = id;
     socket.emit("newUser" , id, name);
 });
 
@@ -16,6 +21,12 @@ peer.on('open' , (id)=>{
 socket.on('allNames', (namesObj) => {
   otherNames = namesObj;            
 });
+
+// for messaging
+socket.on('receive', data =>{
+  append(`${data.name}: ${data.message}`, 'left')
+  console.log(`${data.name}: ${data.message}`);
+})
 
 navigator.mediaDevices.getUserMedia({
     video:true,
@@ -131,3 +142,23 @@ navigator.mediaDevices.getUserMedia({
     peer.destroy();
     location.replace("/")
   }
+
+  const append = (message, position)=>{
+    const messageElement = document.createElement('div');
+    messageElement.innerText = message;
+    messageElement.classList.add('message');
+    messageElement.classList.add(position);
+    messageContainer.append(messageElement);
+    // if(position =='left'){ 
+    //     audio.play();
+    // }
+  }
+
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const message = messageInput.value;
+    append(`You: ${message}`, 'right');
+    socket.emit('send', message, myId);
+    messageInput.value = ''
+  })
