@@ -4,18 +4,36 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>Room</title>
 	
 	<link rel="stylesheet" href="styles.css">
+
+	<!-- Icons -->
+	<script defer src="https://kit.fontawesome.com/e8469f8d32.js" crossorigin="anonymous"></script>
+	<!-- Peerjs -->
 	<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js" defer></script>
+	<!-- Socket -->
 	<script src="socket.io/socket.io.js" defer></script>
+	<!-- Client -->
 	<script src="index.js" charset="utf-8" defer></script>
 </head>
 
 <body>
+
+	<!-- Video Container -->
 	<div id = "videoDiv"></div>
 	<div id = "myVideo"></div>
-	<input id = "disconnectCall" type="image" src="icons8-end-call-96.png" onclick="disconnectCall()" alt="Disconnect Call" width="48" height="48">
+	
+
+	<!-- Media Buttons -->
+	
+	<button class="icon-btn" id = "ibtn1"><i onclick="toggleVideo(this)" class="fas fa-video fa-2x" style="color: darkslategrey;"></i></button>
+	<button class="icon-btn" id = "ibtn3"><i onclick="toggleAudio(this)" class="fas fa-microphone fa-2x" style="color: darkslategrey;"></i></button>
+	<button onclick="disconnectCall()" alt="Disconnect Call" class="icon-btn" id = "ibtn2"><i class="fas fa-phone-slash fa-2x" style="color: red;"></i></button>
+
+	<!-- Message Container -->
+	
 	<div class="container"></div> 
 	<div class="send">
         <form action="#" id="send-container">
@@ -23,6 +41,7 @@
             <button class="btn" type="submit">Send</button>
         </form>
     </div>
+	
 </body>
 
 </html>
