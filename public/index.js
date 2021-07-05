@@ -1,14 +1,24 @@
 const socket = io('/');
 const peer = new Peer();
+// Calling Elements
 const videoDiv = document.getElementById('videoDiv');
 const myVideo = document.getElementById('myVideo');
+// Chatting Elements
+const form = document.getElementById('send-container');
+const messageInput = document.getElementById('messageInp')
+const messageContainer = document.querySelector(".container")
 
 let otherUsers = {}, otherVid = {}, otherNames = {};
 let mediaList = {};                 // For handling media recieving twice
 
+// Name Prompt
 const name = prompt("Enter your name to join");
 
+// Global var for ID
+var myId = 0, myMedia = 0;      
+
 peer.on('open' , (id)=>{
+    myId = id;
     socket.emit("newUser" , id, name);
 });
 
@@ -17,10 +27,19 @@ socket.on('allNames', (namesObj) => {
   otherNames = namesObj;            
 });
 
+// for messaging
+socket.on('receive', data =>{
+  append(`${data.name}: ${data.message}`, 'left');
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+})
+
+
 navigator.mediaDevices.getUserMedia({
     video:true,
     audio:true
   }).then((stream)=>{
+
+    myMedia = stream;
 
     // Adding myVideo Element
     addMyVideo(stream);
@@ -33,6 +52,12 @@ navigator.mediaDevices.getUserMedia({
     
     // Calling upon New user
     socket.on('userJoined', (userid, userName) =>{
+        otherNames[userid] = userName;
+
+        // Message Appending
+        append(`${userName} joined the room!`, 'left');
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+        
         const call = peer.call(userid, stream);
         addUserMedia(userid, call, userName);
     })
@@ -47,6 +72,10 @@ navigator.mediaDevices.getUserMedia({
 
     if(otherUsers[userId]){
 
+      // Message Appending
+      append(`${otherNames[userId]} left the room!`, 'left');
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+
       otherUsers[userId].close();
 
       otherVid[userId][0].parentNode.replaceChild(otherVid[userId][1], otherVid[userId][0]);
@@ -59,6 +88,7 @@ navigator.mediaDevices.getUserMedia({
 
   });
 
+// -----------------------Media Functions----------------------
 
   function addUserMedia(userId, callObj, userName) {
     // for closing object on disconnection
@@ -126,8 +156,45 @@ navigator.mediaDevices.getUserMedia({
     myVideo.append(myName);
   }
 
+// -------------------------Chatting Functions------------------------------
+
+  const append = (message, position)=>{
+    const messageElement = document.createElement('div');
+    messageElement.innerText = message;
+    messageElement.classList.add('message');
+    messageElement.classList.add(position);
+    messageContainer.append(messageElement);
+  }
+
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();  // Don't reload the page
+    const message = messageInput.value;  
+    append(`You: ${message}`, 'right');
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+    socket.emit('send', message, myId);
+    messageInput.value = ''   // Again inp empty
+  })
+
+// ---------------------Button Functions-------------------
+  
+  // Disconnect Call
 
   function disconnectCall(){
     peer.destroy();
     location.replace("/")
+  }
+
+  // Mute Video
+
+  function toggleVideo(btnObj) {
+	  btnObj.classList.toggle("fa-video-slash");
+    myMedia.getVideoTracks()[0].enabled = !(myMedia.getVideoTracks()[0].enabled);
+  }
+
+  // Mute Audio
+  
+  function toggleAudio(btnObj) {
+	  btnObj.classList.toggle("fa-microphone-slash");
+    myMedia.getAudioTracks()[0].enabled = !(myMedia.getAudioTracks()[0].enabled);
   }

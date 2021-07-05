@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
 * {
     margin: 0;
+    padding: 0;
 }
 
 body {
@@ -8,24 +9,15 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+/* ---------- Video CSS ------------- */
+
 #videoDiv {
     display: grid;
     grid-gap: 30px;
-    height: 80%;
-    position: relative;
-    left: 1%;
-    top: 50px;
+    margin: 10px;
     grid-template-columns: repeat(auto-fill, 300px);
     grid-auto-rows: 300px;
 }
-
-#disconnectCall{
-    position:absolute;
-    bottom:30px;
-    right:25%;
-    left:50%;
-}
-
 
 p {
     background-color: rgb(5, 5, 5);
@@ -47,9 +39,10 @@ video {
 }
 
 #myVideo {
+    min-width: 300px;
     height: 30%;
     width: 15%;
-    position: fixed;
+    position: absolute;
     top: 60%;
     left: 1%;
 }
@@ -64,4 +57,103 @@ video {
     top: 3%;
     border: 2px solid #4F5D75;
     border-radius: 10px;
+}
+
+/* ---------- Messaging CSS ------------- */
+
+/* Message Container */
+.container{         
+    min-width: 300px;
+    border: 6px solid #4F5D75;
+    border-radius: 13px;
+    height: 20vh;
+    padding: 33px;
+    overflow-y: auto;
+    margin-right: 23px;
+    margin-bottom: 23px;
+    position: absolute;
+    left: 70%;
+    top: 55%;
+}
+
+#send-container{
+    display:block;
+    /* margin: auto; */
+    text-align: center;
+    /*min-width: 50px;*/
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 7%;
+    top: 90%;
+}
+
+/* message style */
+.message{
+    background-color: rgb(211, 204, 204);
+    font-size: 14px;
+    width: 74%;
+    padding: 10px;
+    margin: 17px 12px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+/* Positions */
+.left{
+    float: left;
+    clear:both;
+}
+
+.right{
+    float: right;
+    clear:both;
+}
+
+/* Input in form */
+#messageInp{
+    width: 80%;
+    min-width: 280px;
+    border: 2px solid black;
+    border-radius: 6px;
+    height: 34px;
+    font-size: 14px;
+}
+
+/* Send Button */
+.btn{
+    margin: 0 5px;
+    width: 20%;
+    min-width: 80px;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 6px;
+    height: 34px;
+}
+
+/* ---------- Icon Buttons CSS ------------- */
+
+.icon-btn {
+    width: 3%;
+    height: 60px;
+}
+
+#ibtn1 {
+    position: absolute;
+    left:40%;
+    top: 85%;
+}
+
+#ibtn2 {
+    position: absolute;
+    left:50%;
+    top: 85%;
+}
+
+#ibtn3 {
+    position: absolute;
+    left:45%;
+    top: 85%;
 }
