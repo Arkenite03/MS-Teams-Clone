@@ -9,6 +9,12 @@
 	
 	<link rel="stylesheet" href="styles.css">
 
+	<!-- Room EJS -->
+
+	<script type="text/javascript">
+		var roomID = "<%= RoomId %>"
+	</script>
+	
 	<!-- Icons -->
 	<script defer src="https://kit.fontawesome.com/e8469f8d32.js" crossorigin="anonymous"></script>
 	<!-- Peerjs -->
@@ -20,6 +26,7 @@
 </head>
 
 <body>
+	<div class="head" style="position: fixed; top: 0; background-color: #1e3660; width: 100%; height: 5px;"></div>
 
 	<!-- Video Container -->
 	<div id = "videoDiv"></div>
@@ -41,6 +48,8 @@
             <button class="btn" type="submit">Send</button>
         </form>
     </div>
+
+	<div class="footer" style="position: fixed; bottom: 0; background-color: #1e3660; width: 100%; height: 10px; border-radius: 50%;"></div>
 	
 </body>
 

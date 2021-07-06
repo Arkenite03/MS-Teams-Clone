@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>About</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Otomanopee+One&display=swap");
+        body {
+            background-image: url("back.png");
+            font-family: 'Otomanopee One', sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        /* Heading */
+
+        h1 {
+            font-size: 2.0em;
+            margin: 0;
+            margin-left: 10px;
+            color: #1e3660;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        span {
+            border: 2px solid #4F5D75;
+            padding: 10px;
+            padding-top: 5px;
+        }
+
+        #logo {
+            position: relative;
+            top: 18px;
+            width: 55px;
+            height: 55px;
+        }
+
+         /*Nav Bar*/
+
+        .navBar {
+            width: 50%;
+            height: 60px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .navOptions {
+            color: #1e3660;
+            font-weight: 500;
+            font-size: 1.0em;
+            letter-spacing: 1px;
+            padding: 30px;
+        }
+
+        .navOptions:hover{
+            color: white;
+            background-color: #1e3660;
+            transition: 0.5s;
+        }
+
+        /* Paragraph */
+
+        .quote {
+            color: #667316;
+            font-size: 2.5em;
+            font-weight: 500;
+            position: absolute;
+            left: 2%;
+            top: 30%;
+        }
+
+        #myname {
+            color: #667316;
+            font-weight: 300;
+            font-size: 2.0em;
+            position: absolute;
+            left: 20%;
+            top: 40%;
+        }
+
+    </style>
+</head>
+<body>
+	<div class="head" style="position: fixed; top: 0; background-color: #1e3660; width: 100%; height: 5px;"></div>
+
+    <div class="header" style="display: flex; justify-content: space-between;">
+		<h1><span><img id ="logo" src="https://img.icons8.com/office/80/000000/video-call.png"/></span> Teams-Time.com</h1>
+		<nav class="navBar">
+			<a class="navOptions" href="/">Home</a>
+			<a class="navOptions" href="/about">About</a>
+			<a class="navOptions" href="/more">More</a>
+		</nav>
+	</div>
+
+    <p class="quote">
+        "Disconnect to Connect!" - Teams-Time.com
+    </p>
+    <p id="myname">- created by Vishwa Sharma</p>
+
+	<div class="footer" style="position: fixed; bottom: 0; background-color: #1e3660; width: 100%; height: 15px; border-radius: 50%;"></div>
+</body>
+</html>

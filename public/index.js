@@ -19,7 +19,7 @@ var myId = 0, myMedia = 0;
 
 peer.on('open' , (id)=>{
     myId = id;
-    socket.emit("newUser" , id, name);
+    socket.emit("newUser" , id, name, roomID);
 });
 
 // Recieving allNames Object from Server
