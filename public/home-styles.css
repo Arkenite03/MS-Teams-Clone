@@ -1,24 +1,27 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Otomanopee+One&display=swap");
 body {
-  background: #2D3142;
-  font-family: 'Raleway', sans-serif;
+  background-image: url("back.png");
+  font-family: 'Otomanopee One', sans-serif;
+  margin: 0px;
+  padding: 0px;
 }
 
 
 /* Heading */
 
 h1 {
-  font-size: 1.5em;
-  text-align: center;
-  padding: 70px 0 0 0;
-  color: #EF8354;
-  font-weight: 300;
+  font-size: 2.0em;
+  margin: 0;
+  margin-left: 10px;
+  color: #1e3660;
+  font-weight: 500;
   letter-spacing: 1px;
 }
 
 span {
   border: 2px solid #4F5D75;
   padding: 10px;
+  padding-top: 5px;
 }
 
 #logo {
@@ -28,25 +31,85 @@ span {
   height: 55px;
 }
 
-/* Layout Styling */
+/* Image */
 
-#container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 50px 0 150px 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+#student {
+  width: 300px;
+  position: absolute;
+  top: 30%;
+  right: 10%;
 }
 
+
+ /*Nav Bar*/
+
+.navBar {
+  width: 50%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navOptions {
+  color: #1e3660;
+  font-weight: 500;
+  font-size: 1.0em;
+  letter-spacing: 1px;
+  padding: 30px;
+}
+
+.navOptions:hover{
+  color: white;
+  background-color: #1e3660;
+  transition: 0.5s;
+}
+
+/* Button Layout Styling */
+
+#container {
+  width: 70%;
+  margin: 0;
+  margin-left: 60px;
+  margin-top: 200px;
+  padding: 50px 0 150px 0;
+  display: flex;
+  gap: 80px; 
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.outer {
+  width: 26%;
+  border-radius: 5%;
+}
+
+#outer2 {
+  background-color: #1e3660;
+}
+
+#outer1 {
+  border: 4px solid #1e3660;
+}
+
+/* Input URL  */
+
+#joinURL {
+  border: 5px bold black;
+  width: 80%;
+  position: relative;
+  left: 9%;
+  top: -12%;
+}
+
+/*Buttons*/
 
 .button {
   display: inline-flex;
   height: 40px;
   width: 150px;
   border: 2px solid #BFC0C0;
-  margin: 20px 20px 20px 20px;
+  margin: 60px;
   color: #BFC0C0;
   text-transform: uppercase;
   text-decoration: none;
@@ -67,18 +130,21 @@ a {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  border: 2px solid #1e3660;
+  background-color: #1e3660;
 }
 
 #button-2 a {
   position: relative;
   transition: all .35s ease-Out;
+  color: white;
 }
 
 #slide {
   width: 100%;
   height: 100%;
   left: -200px;
-  background: #BFC0C0;
+  background: white;
   position: absolute;
   transition: all .35s ease-Out;
   bottom: 0;
@@ -90,4 +156,49 @@ a {
 
 #button-2:hover a {
   color: #2D3142;
+}
+
+
+
+/* Seventh Button */
+
+#button-7 {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: white;
+}
+
+#button-7 a {
+  position: relative;
+  left: 0;
+  transition: all .35s ease-Out;
+  color: #1e3660;
+}
+
+#dub-arrow {
+  width: 100%;
+  height: 100%;
+  background: #1e3660;
+  left: -200px;
+  position: absolute;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .35s ease-Out;
+  bottom: 0;
+}
+
+#button-7 img {
+  width: 20px;
+  height: auto;
+}
+
+#button-7:hover #dub-arrow {
+  left: 0;
+}
+
+#button-7:hover a {
+  left: 150px;
 }

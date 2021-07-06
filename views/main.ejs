@@ -5,19 +5,57 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Teams-Time</title>
 	<link rel="stylesheet" href="home-styles.css">
+	
+	<script type="text/javascript">
+		var roomID = "<%= RoomId %>"
+		var roomURL = `${window.location.href}${roomID}`;
+
+		console.log(roomURL);
+		
+		function createFun(){
+			location.replace(roomURL);
+		}
+
+		function joinFun(){
+			const inpURL = document.getElementById('joinURL');
+			location.replace(inpURL.value);
+		}
+	</script>
+
 </head>
 <body>
-	<h1><span><img id ="logo" src="https://img.icons8.com/office/80/000000/video-call.png"/></span> Teams-Time.com</h1>
+	<div class="head" style="position: fixed; top: 0; background-color: #1e3660; width: 100%; height: 5px;"></div>
+	<div class="header" style="display: flex; justify-content: space-between;">
+		<h1><span><img id ="logo" src="https://img.icons8.com/office/80/000000/video-call.png"/></span> Teams-Time.com</h1>
+		<nav class="navBar">
+			<a class="navOptions" href="/">Home</a>
+			<a class="navOptions" href="/about">About</a>
+			<a class="navOptions" href="/more">More</a>
+		</nav>
+	</div>
+
+	<img id = "student" src="chair.jpg" alt="student">
 
 	<!-- Flex Container -->
 	<div id="container">
 
-	  <div class="button" id="button-2">
-	    <div id="slide"></div>
-	    <a href="/room">Join Room!</a>
-	  </div>
+		<div class="outer" id="outer1">
+		  <div class="button" id="button-2">
+		    <div id="slide"></div>
+		    <a onclick="createFun()">Create Room!</a>
+		  </div>
+		</div>
+
+		<div class="outer" id="outer2">
+		  <div class="button" id="button-7">
+			<div id="dub-arrow"><img onclick="joinFun()" src="https://github.com/atloomer/atloomer.github.io/blob/master/img/iconmonstr-arrow-48-240.png?raw=true" alt="Join Room!" /></div>
+			<a>Join Room!</a>
+		  </div>
+		  <input type="text" placeholder="Enter Room URL" id="joinURL">
+		</div>
 
 	  <!-- End Container -->
 	</div>
+	<div class="footer" style="position: fixed; bottom: 0; background-color: #1e3660; width: 100%; height: 15px; border-radius: 50%;"></div>
 </body>
 </html>
