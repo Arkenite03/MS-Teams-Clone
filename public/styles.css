@@ -59,6 +59,15 @@ video {
     border-radius: 10px;
 }
 
+#screenContainer {
+    min-width: 300px;
+    height: 34%;
+    width: 42%;
+    position: absolute;
+    top: 48%;
+    left: 26%;
+}
+
 /* ---------- Messaging CSS ------------- */
 
 /* Message Container */
@@ -154,5 +163,11 @@ video {
 #ibtn3 {
     position: absolute;
     left:45%;
+    top: 85%;
+}
+
+#ibtn4 {
+    position: absolute;
+    left:55%;
     top: 85%;
 }

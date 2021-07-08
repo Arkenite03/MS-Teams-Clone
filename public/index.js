@@ -10,6 +10,7 @@ const messageContainer = document.querySelector(".container")
 
 let otherUsers = {}, otherVid = {}, otherNames = {};
 let mediaList = {};                 // For handling media recieving twice
+let myRoomUsers = [];
 
 // Name Prompt
 const name = prompt("Enter your name to join");
@@ -46,8 +47,25 @@ navigator.mediaDevices.getUserMedia({
 
     // Receiving Call
     peer.on('call', callObj => {
-        callObj.answer(stream);
-        addUserMedia(callObj.peer, callObj, otherNames[callObj.peer]);
+      if(!myRoomUsers.includes(callObj.peer)){
+        myRoomUsers.push(callObj.peer);
+      }
+
+      let flag = -1;
+      
+      callObj.answer(stream);
+      
+      callObj.on('stream', remoteStream => {
+          flag = remoteStream.getAudioTracks().length;
+          
+          if(flag == 0){
+            addScreenStream(remoteStream);
+          }else if(flag == 1){
+            addUserMedia(callObj.peer, callObj, otherNames[callObj.peer]);
+          }else{
+            console.log(`${flag} err`);
+          }
+      })
     })
     
     // Calling upon New user
@@ -59,6 +77,7 @@ navigator.mediaDevices.getUserMedia({
         messageContainer.scrollTop = messageContainer.scrollHeight;
         
         const call = peer.call(userid, stream);
+        myRoomUsers.push(userid);
         addUserMedia(userid, call, userName);
     })
 
@@ -197,4 +216,37 @@ navigator.mediaDevices.getUserMedia({
   function toggleAudio(btnObj) {
 	  btnObj.classList.toggle("fa-microphone-slash");
     myMedia.getAudioTracks()[0].enabled = !(myMedia.getAudioTracks()[0].enabled);
+  }
+
+  // -----------------Screen Sharing----------------------------------------
+
+  function addScreenStream(remoteStream) {
+      // Emptying Container
+      const screenContainer = document.getElementById('screenContainer');
+      screenContainer.innerHTML = "";
+
+      // Getting vid ready
+      const myVid = document.createElement('video');
+      myVid.muted = true;
+      myVid.srcObject = remoteStream;
+      myVid.addEventListener('loadedmetadata', () => {
+        myVid.play();
+      })
+
+      // Appending in container again
+      screenContainer.append(myVid);
+  }
+
+  // Button onclick
+  async function screenToggle() {
+      // Screen Media
+      const screenStream = await navigator.mediaDevices.getDisplayMedia(
+        {
+          video: { frameRate: 5, width: 1280, height: 720 },
+        }
+      );
+      // Looping for all members in room
+      for(let user in myRoomUsers){ 
+        const call = peer.call(myRoomUsers[user], screenStream);
+      }
   }
