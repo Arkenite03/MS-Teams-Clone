@@ -171,3 +171,19 @@ video {
     left:55%;
     top: 85%;
 }
+
+#ibtn5 {
+    position: absolute;
+    left:35%;
+    top: 85%;
+}
+
+#copyText {
+    position: absolute;
+    top: 86%;
+    left: 22%;
+    height: 6%;
+    border: 2px solid darkslategray;
+    border-radius: 5%;
+    font-size: 0.9em;
+}

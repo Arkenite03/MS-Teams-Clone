@@ -218,6 +218,16 @@ navigator.mediaDevices.getUserMedia({
     myMedia.getAudioTracks()[0].enabled = !(myMedia.getAudioTracks()[0].enabled);
   }
 
+  // Copy meet Url
+
+  function copyURL() {
+    var copyText = document.getElementById("copyText");
+    copyText.value = window.location.href;
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+  }
+
   // -----------------Screen Sharing----------------------------------------
 
   function addScreenStream(remoteStream) {

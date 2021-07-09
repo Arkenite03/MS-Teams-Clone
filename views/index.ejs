@@ -35,10 +35,14 @@
 
 	<!-- Media Buttons -->
 	
-	<button class="icon-btn" id = "ibtn1"><i onclick="toggleVideo(this)" class="fas fa-video fa-2x" style="color: darkslategrey;"></i></button>
-	<button class="icon-btn" id = "ibtn3"><i onclick="toggleAudio(this)" class="fas fa-microphone fa-2x" style="color: darkslategrey;"></i></button>
-	<button class="icon-btn" id = "ibtn4"><i onclick="screenToggle()" class="fas fa-desktop fa-2x" style="color: darkslategrey;"></i></button>
-	<button onclick="disconnectCall()" alt="Disconnect Call" class="icon-btn" id = "ibtn2"><i class="fas fa-phone-slash fa-2x" style="color: red;"></i></button>
+	<button title="Toggle Video" class="icon-btn" id = "ibtn1"><i onclick="toggleVideo(this)" class="fas fa-video fa-2x" style="color: darkslategrey;"></i></button>
+	<button title="Toggle Audio" class="icon-btn" id = "ibtn3"><i onclick="toggleAudio(this)" class="fas fa-microphone fa-2x" style="color: darkslategrey;"></i></button>
+	<button title="Share Screen" class="icon-btn" id = "ibtn4"><i onclick="screenToggle()" class="fas fa-desktop fa-2x" style="color: darkslategrey;"></i></button>
+	<button title="Copy Meet URL" class="icon-btn" id = "ibtn5"><i onclick="copyURL()" class="fas fa-copy fa-2x" style="color: darkslategrey;"></i></button>
+	<button title="Leave Meet" onclick="disconnectCall()" alt="Disconnect Call" class="icon-btn" id = "ibtn2"><i class="fas fa-phone-slash fa-2x" style="color: red;"></i></button>
+
+	<!-- Clip Board Input -->
+	<input placeholder="Meet URL" type="text" id="copyText">
 
 	<!-- Message Container -->
 	
