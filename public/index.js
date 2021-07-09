@@ -68,6 +68,12 @@ navigator.mediaDevices.getUserMedia({
       })
     })
     
+    // Close Screen Event
+    socket.on("closeScreen", () => {
+      const screenContainer = document.getElementById('screenContainer');
+      screenContainer.innerHTML = "";
+    })
+    
     // Calling upon New user
     socket.on('userJoined', (userid, userName) =>{
         otherNames[userid] = userName;
@@ -259,4 +265,8 @@ navigator.mediaDevices.getUserMedia({
       for(let user in myRoomUsers){ 
         const call = peer.call(myRoomUsers[user], screenStream);
       }
+      // Stop Sharing Clicked
+      screenStream.getVideoTracks()[0].onended = function () {
+          socket.emit("screenClosed");
+      };
   }

@@ -43,6 +43,12 @@ io.on('connection' , (socket)=>{
             socket.to(roomID).emit('receive', {message: message, name: otherNames[myId]});
         });
         
+        // Screen Closed
+
+        socket.on("screenClosed", () => {
+            socket.to(roomID).emit('closeScreen');
+        })
+        
     });
 }); 
   
